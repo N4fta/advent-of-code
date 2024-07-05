@@ -1,5 +1,5 @@
 
-fs = open ("2023\day1\input.txt")
+fs = open ("2023/day1/input.txt")
 
 totalSum = 0
 
