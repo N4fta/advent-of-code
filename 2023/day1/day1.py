@@ -1,5 +1,25 @@
 import re
 
+fs = open ("2023/day1/input.txt")
+
+def part1():
+    
+    totalSum = 0
+
+    line: str
+    for line in iter(fs.readline, ''):
+        first, last = '', ''
+        for char in line:
+            if char.isnumeric ():
+                if first == "": first = char
+                last = char
+
+        #print(first, last)
+        totalSum += int(first+last)
+    print(totalSum)
+
+
+
 def parsePossibleInt(possibleInt) -> str:
     try:
         return str(int(possibleInt))
@@ -16,15 +36,14 @@ def parsePossibleInt(possibleInt) -> str:
             case "nine": return '9'
         exit()
 
+
 def part2():
-        # There was a big problem with simply using find all where matches like `eight` in `eightwo` made the regex skip over the `t` in `two`
+    # There was a big problem with simply using find all where matches like `eight` in `eightwo` made the regex skip over the `t` in `two`
     # At first I couldn't find this through debugging so I went through the reddit and found someone mention problems with .findall() and not wanting to use look ahead.
     # I went through my code and sure enough that was teh problem
 
     # They choose to iterate through each digit. But since I saw that solution I I decided to look deeper into regex, what look ahead was and use it
     # To be honest my code is rather inefficient since the pattern is quite long and I iterate twice through every line, but it works! 
-
-    fs = open ("2023/day1/input.txt")
 
     totalSum = 0
     number_strings = ["one","two","three","four","five","six","seven","eight","nine"]
@@ -57,8 +76,6 @@ def part2_improved():
     # This second attempt was inspired by the fact that my first function was messy and looked inefficient
     # I don't know if this is more efficient/faster since I have to reverse two strings per line but the pattern is shorter and I assume .search() is faster than .findall() since it stops after the first match
     # Either way this code looks much cleaner
-
-    fs = open ("2023/day1/input.txt")
 
     totalSum = 0
     number_strings = ["one","two","three","four","five","six","seven","eight","nine"]
